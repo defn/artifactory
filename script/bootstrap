@@ -4,12 +4,13 @@ function bootstrap {
   local shome="$(cd -P -- "$(dirname -- "$BASH_SOURCE")/.." && pwd -P)"
   source "$shome/script/profile"
 
-  local url_artifactory_Darwin='https://bintray.com/artifact/download/jfrog/artifactory-cli-go/artifactory-cli-mac-386/art'
-  local url_artifactory_Darwin='https://bintray.com/artifact/download/jfrog/artifactory-cli-go/artifactory-cli-linux-amd64/art'
+  local ver_artifactory='1.3.0'
+  local url_artifactory_Darwin="https://bintray.com/artifact/download/jfrog/artifactory-cli-go/${ver_artifactory}/artifactory-cli-mac-386/art"
+  local url_artifactory_Linux="https://bintray.com/artifact/download/jfrog/artifactory-cli-go/${ver_artifactory}/artifactory-cli-linux-amd64/art"
 
   local nm_url="url_artifactory_$(uname -s)"
   local url_artifactory="${!nm_url}"
-  local nm_artifactory="art-$(uname -s)"
+  local nm_artifactory="art-${ver_artifactory}-$(uname -s)"
 
   cache curl "$nm_artifactory" "$url_artifactory"
   mkdir -p "$shome/bin"
